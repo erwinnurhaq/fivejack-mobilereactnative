@@ -33,7 +33,7 @@ function transformText(i) {
 function changeName(i, record) {
     let id = i.split(' ')[0]
     let x = record.filter(e => e.includes(id) && !e.includes('Leave'))
-    return i.replace(id, x[x.length - 1].split(' ')[2])
+    return i.replace(/[^a-zA-Z0-9\s\.]/g, "").replace(id, x[x.length - 1].split(' ')[2])
 }
 
 function solution(record) {
