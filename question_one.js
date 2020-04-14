@@ -31,14 +31,12 @@ function transformText(i) {
 }
 
 function changeName(i, record) {
-    let id = i.split(' ')[0]
-    let x = record.filter(e => e.includes(id) && !e.includes('Leave'))
-    return i.replace(/[^a-zA-Z0-9\s\.]/g, "").replace(id, x[x.length - 1].split(' ')[2])
+    let x = record.filter(e => e.includes(i.split(' ')[0]) && !e.includes('Leave'))
+    return i.replace(/[^a-zA-Z0-9\s\.]/g, "").replace(i.split(' ')[0], x[x.length - 1].split(' ')[2])
 }
 
 function solution(record) {
-    let res = record.map(i => transformText(i)).filter(i => i !== null)
-    return res.map(i => changeName(i, record))
+    return record.map(i => transformText(i)).filter(i => i !== null).map(i => changeName(i, record))
 }
 
 console.log(solution(["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"]))
